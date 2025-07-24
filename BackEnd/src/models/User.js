@@ -83,13 +83,15 @@ const addressSchema = new mongoose.Schema(
   {
     FirstName: { type: String, required: true },
     LastName: { type: String, required: true },
-    PhoneNumber: { type: String, required: true },
-    Provience: { type: String, required: true }, 
+    PhoneNumber: { type: String },
+    Provience: { type: String, required: true },
     District: { type: String, required: true },
     Area: { type: String, required: true },
     City: { type: String, required: true },
     HouseNo: { type: String, required: true },
     AnyInformation: { type: String, default: "" },
+    PostalCode: { type: String, required: false },
+    Country: { type: String, required: true },
   },
   { _id: false }
 );

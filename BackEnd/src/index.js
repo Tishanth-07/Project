@@ -37,7 +37,6 @@ import instagramAuthRoutes from "./routes/instagramAuthRoutes.js";
 import setupFacebookStrategy from "./config/facebookStrategy.js";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import User from "./models/User.js";
-import addressRoutes from "./routes/address-routes.js";
 import cartRouter from "./routes/cart-routes.js";
 import productRoutes from "./routes/product-routes.js";
 import couponRouter from "./routes/coupon-routes.js";
@@ -68,6 +67,7 @@ import checkoutRoutes from "./routes/checkout.js";
 import wishlistRoutes from "./routes/wishlistRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
+
 // Load environment variables
 
 const __filename = fileURLToPath(import.meta.url);
@@ -134,6 +134,7 @@ app.use(passport.initialize());
 
 // Static folders
 app.use("/uploads", express.static(uploadDir));
+app.use("/uploads", express.static("uploads"));
 app.use("/src", express.static(path.join(__dirname, "src")));
 app.use("/images", express.static(path.join(__dirname, "../src/products")));
 app.use("/products", express.static(path.join(__dirname, "products")));
@@ -164,7 +165,6 @@ app.use("/api/ads", adRoutes);
 app.use("/api/admin/profile", adminProfileRoutes);
 app.use("/api/orders", dyn_orderRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api", addressRoutes);
 app.use("/api/admin", productRoutes);
 app.use(enquiryRoutes);
 app.use(subscribeRoutes);
@@ -176,6 +176,7 @@ app.use("/api/auth", instagramAuthRoutes);
 app.use("/api", refundRoutes);
 app.use("/api/review-history", reviewHistoryRoutes);
 app.use("/api/profile", profileRoutes);
+
 // Default route
 app.get("/", (req, res) => {
   res.send("API is running...");

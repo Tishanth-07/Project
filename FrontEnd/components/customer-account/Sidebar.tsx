@@ -72,7 +72,9 @@ const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
       {/* Sidebar */}
       <div
         className={`fixed lg:sticky top-0 left-0 z-40 h-screen w-80 lg:w-72 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 shadow-xl lg:shadow-lg transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+          isMobileMenuOpen
+            ? "translate-x-0"
+            : "-translate-x-full lg:translate-x-0"
         }`}
       >
         <div className="flex flex-col h-full p-6">
@@ -80,10 +82,15 @@ const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
           <div className="flex flex-col items-center mb-8 p-4 bg-gradient-to-r from-red-50 to-pink-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 relative">
             <div className="relative mb-4">
               <img
-src={uploadedImageUrl || session?.user?.image || "/default-profile.png"}                alt="Profile"
+                src={
+                  uploadedImageUrl ||
+                  session?.user?.image ||
+                  "/default-product.jpg"
+                }
+                alt="Profile"
                 className="w-20 h-20 rounded-full border-4 border-white dark:border-gray-600 shadow-lg object-cover"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/default-profile.png";
+                  (e.target as HTMLImageElement).src = "/default-product.jpg";
                 }}
               />
               <button
@@ -118,7 +125,9 @@ src={uploadedImageUrl || session?.user?.image || "/default-profile.png"}        
                   >
                     <span
                       className={`text-lg transition-transform duration-200 ${
-                        pathname.startsWith(item.href) ? "scale-110" : "group-hover:scale-110"
+                        pathname.startsWith(item.href)
+                          ? "scale-110"
+                          : "group-hover:scale-110"
                       }`}
                     >
                       {item.icon}
@@ -138,9 +147,15 @@ src={uploadedImageUrl || session?.user?.image || "/default-profile.png"}        
               aria-label="Toggle theme"
             >
               <span className="text-lg">
-                {theme === "dark" ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-red-600" />}
+                {theme === "dark" ? (
+                  <FaSun className="text-yellow-400" />
+                ) : (
+                  <FaMoon className="text-red-600" />
+                )}
               </span>
-              <span className="font-medium">{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+              <span className="font-medium">
+                {theme === "dark" ? "Light Mode" : "Dark Mode"}
+              </span>
             </button>
           </div>
 
@@ -167,10 +182,10 @@ src={uploadedImageUrl || session?.user?.image || "/default-profile.png"}        
                 ×
               </button>
             </div>
-<ProfileSettings
-  onClose={() => setIsProfileModalOpen(false)}
-  onImageUpload={(url) => setUploadedImageUrl(url)}
-/>
+            <ProfileSettings
+              onClose={() => setIsProfileModalOpen(false)}
+              onImageUpload={(url) => setUploadedImageUrl(url)}
+            />
           </div>
         </div>
       )}
